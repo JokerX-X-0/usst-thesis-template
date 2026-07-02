@@ -83,5 +83,6 @@ xelatex -synctex=1 -interaction=nonstopmode -file-line-error main.tex
 - 中文正文使用宋体，英文和数字使用 Times New Roman；Windows 系统通常已经包含所需字体。
 - 目录页会在第一章之前直接打印“中文摘要”和“ABSTRACT”，这两项不带页码；如不需要，可在 `main.tex` 中启用 `\usstAbstractNotInToc`。
 - 正文前空白背面页默认不插入；打印版可在 `main.tex` 中启用 `\usstFrontMatterBlankPages`，第一章首页始终会保持在奇数页。
+- 第二章及后续各章默认保持奇数页开章；如需取消章间补空白页，可在 `main.tex` 中启用 `\usstChapterAnyPage`。
 - 图片建议使用 `.png`、`.jpg` 或 `.pdf`。如果原始图片是 `.tif`，建议先转换成 `.png` 或 `.pdf` 后再插入正文。
 - 参考文献采用 `gbt7714-numeric` 样式，新增或删除参考文献后需要经过 BibTeX 编译。

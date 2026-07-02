@@ -56,6 +56,11 @@
 \newcommand{\usstFrontMatterBlankPages}{\usst@frontblankpagestrue}
 \newcommand{\usstFrontMatterNoBlankPages}{\usst@frontblankpagesfalse}
 
+\newif\ifusst@chapteroddpages
+\usst@chapteroddpagestrue
+\newcommand{\usstChapterOddPages}{\usst@chapteroddpagestrue}
+\newcommand{\usstChapterAnyPage}{\usst@chapteroddpagesfalse}
+
 \newcommand{\usst@cleardoublepage}{%
   \clearpage
   \if@twoside
@@ -457,8 +462,13 @@
 
 \newcommand{\usstmainmatter}{%
   \usst@ensureoddphysicalpage
-  \let\cleardoublepage\usst@cleardoublepage
-  \@openrighttrue
+  \ifusst@chapteroddpages
+    \let\cleardoublepage\usst@cleardoublepage
+    \@openrighttrue
+  \else
+    \let\cleardoublepage\clearpage
+    \@openrightfalse
+  \fi
   \pagenumbering{arabic}
   \setcounter{page}{1}
   \pagestyle{usst}
