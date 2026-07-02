@@ -202,6 +202,13 @@
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0pt}
 }
+\fancypagestyle{usstfront}{
+  \fancyhf{}
+  \fancyhead[C]{\songti\zihao{5}\nouppercase{\leftmark}}
+  \fancyfoot[C]{\rmfamily\zihao{5}\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
 
 \DeclareCaptionFont{usstcaption}{\songti\zihao{-4}\setlength{\baselineskip}{16bp}\selectfont}
 \DeclareCaptionLabelSeparator{usstspace}{\quad}
@@ -380,13 +387,14 @@
 \newenvironment{cnabstract}{%
   \clearpage
   \hypersetup{pageanchor=true}
-  \pagestyle{usst}
+  \pagestyle{usstfront}
   \pagenumbering{Roman}
   \setcounter{page}{1}
   \phantomsection
   \usst@bookmark{摘要}{usst.abstract.zh}%
   \chapter*{摘\quad 要}
   \markboth{摘要}{摘要}
+  \thispagestyle{usstfront}
   \songti\zihao{-4}\setlength{\baselineskip}{20bp}\selectfont
 }{\par\usst@frontblankback}
 
@@ -399,6 +407,7 @@
   \usst@bookmark{ABSTRACT}{usst.abstract.en}%
   \chapter*{ABSTRACT}
   \markboth{ABSTRACT}{ABSTRACT}
+  \thispagestyle{usstfront}
   \rmfamily\zihao{-4}\setlength{\baselineskip}{20bp}\selectfont
 }{\par\usst@frontblankback}
 
@@ -411,6 +420,8 @@
   \usst@bookmark{目录}{usst.contents}%
   \markboth{目录}{目录}
   \chapter*{\contentsname}
+  \markboth{目录}{目录}
+  \thispagestyle{usstfront}
   \ifusst@abstractintoc
     {\songti\zihao{-4}\setlength{\baselineskip}{20bp}\selectfont
       \noindent 中文摘要\par
