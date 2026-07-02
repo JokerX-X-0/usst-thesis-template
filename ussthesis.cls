@@ -86,6 +86,9 @@
 \newcommand{\usst@checkbox}{%
   \tikz[baseline=-0.12em]{\draw[line width=0.4pt] (0,0) rectangle (10bp,10bp);}%
 }
+\newcommand{\usst@bookmark}[2]{\pdfbookmark[0]{#1}{#2}}
+\newcommand{\usst@coverinfo}[2]{\makebox[4\ccwd][l]{#1}：#2}
+\newcommand{\usst@studentidlabel}{\makebox[4\ccwd][s]{学\hfill 号}}
 
 \newcommand{\usst@schoolcode}{10252}
 \newcommand{\usst@studentid}{}
@@ -247,6 +250,7 @@
 \newcommand{\makeoutercover}{%
   \begin{titlepage}
   \thispagestyle{empty}
+  \usst@bookmark{外封面}{usst.outercover}%
   \null
   \usst@place{3.9cm}{4.6cm}{%
     \parbox{5cm}{\fontsize{10bp}{14bp}\selectfont
@@ -266,11 +270,12 @@
 \newcommand{\makeinnercover}{%
   \begin{titlepage}
   \thispagestyle{empty}
+  \usst@bookmark{内封面（中文）}{usst.innercover.zh}%
   \null
   \usst@place{14.15cm}{4.15cm}{%
     \parbox{5.0cm}{\raggedright\heiti\fontsize{10.5bp}{15.6bp}\selectfont
-      学校代码：\usst@schoolcode\\
-      学\hspace{1.05em}号：\usst@studentid}}
+      \usst@coverinfo{学校代码}{\usst@schoolcode}\\
+      \usst@coverinfo{\usst@studentidlabel}{\usst@studentid}}}
   \usst@place{0cm}{6.55cm}{%
     \parbox{\paperwidth}{\centering\heiti\fontsize{16bp}{24bp}\selectfont 上海理工大学\usst@degree 学位论文}}
   \usst@place{3.1cm}{10.85cm}{%
@@ -295,6 +300,7 @@
   \usst@blankback
   \begin{titlepage}
   \thispagestyle{empty}
+  \usst@bookmark{内封面（英文）}{usst.innercover.en}%
   \null
   \usst@place{2.5cm}{7.05cm}{%
     \parbox{16cm}{\centering\rmfamily\fontsize{16bp}{32bp}\selectfont
@@ -321,6 +327,7 @@
 \newcommand{\makeauthorization}{%
   \begin{titlepage}
   \thispagestyle{empty}
+  \usst@bookmark{学位论文版权使用授权书}{usst.authorization}%
   \null
   \usst@place{0cm}{3.75cm}{%
     \parbox{\paperwidth}{\centering\heiti\fontsize{18bp}{30bp}\selectfont 学位论文版权使用授权书}}
@@ -349,6 +356,7 @@
 \newcommand{\makedeclaration}{%
   \begin{titlepage}
   \thispagestyle{empty}
+  \usst@bookmark{声明}{usst.declaration}%
   \null
   \usst@place{0cm}{3.75cm}{%
     \parbox{\paperwidth}{\centering\heiti\fontsize{18bp}{30bp}\selectfont 声\quad 明}}
@@ -376,6 +384,7 @@
   \pagenumbering{Roman}
   \setcounter{page}{1}
   \phantomsection
+  \usst@bookmark{摘要}{usst.abstract.zh}%
   \chapter*{摘\quad 要}
   \markboth{摘要}{摘要}
   \songti\zihao{-4}\setlength{\baselineskip}{20bp}\selectfont
@@ -387,6 +396,7 @@
 \newenvironment{enabstract}{%
   \clearpage
   \phantomsection
+  \usst@bookmark{ABSTRACT}{usst.abstract.en}%
   \chapter*{ABSTRACT}
   \markboth{ABSTRACT}{ABSTRACT}
   \rmfamily\zihao{-4}\setlength{\baselineskip}{20bp}\selectfont
@@ -398,6 +408,7 @@
 \newcommand{\ussttableofcontents}{%
   \clearpage
   \phantomsection
+  \usst@bookmark{目录}{usst.contents}%
   \markboth{目录}{目录}
   \chapter*{\contentsname}
   \ifusst@abstractintoc
