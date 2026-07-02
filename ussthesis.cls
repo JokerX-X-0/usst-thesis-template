@@ -48,6 +48,13 @@
 \makeatletter
 
 \let\cleardoublepage\clearpage
+\newcounter{usst@abspage}
+\AddToHook{shipout/after}{\stepcounter{usst@abspage}}
+
+\newif\ifusst@frontblankpages
+\usst@frontblankpagesfalse
+\newcommand{\usstFrontMatterBlankPages}{\usst@frontblankpagestrue}
+\newcommand{\usstFrontMatterNoBlankPages}{\usst@frontblankpagesfalse}
 
 \newcommand{\usst@cleardoublepage}{%
   \clearpage
@@ -65,22 +72,38 @@
 
 \newcommand{\usst@blankback}{%
   \clearpage
-  \begingroup
-    \thispagestyle{empty}%
-    \null
-    \clearpage
-  \endgroup
+  \ifusst@frontblankpages
+    \begingroup
+      \thispagestyle{empty}%
+      \null
+      \clearpage
+    \endgroup
+  \fi
 }
 \newcommand{\usst@frontblankback}{%
   \clearpage
-  \begingroup
-    \hypersetup{pageanchor=false}%
-    \thispagestyle{empty}%
-    \null
-    \clearpage
-  \endgroup
-  \hypersetup{pageanchor=true}%
-  \addtocounter{page}{-1}%
+  \ifusst@frontblankpages
+    \begingroup
+      \hypersetup{pageanchor=false}%
+      \thispagestyle{empty}%
+      \null
+      \clearpage
+    \endgroup
+    \hypersetup{pageanchor=true}%
+    \addtocounter{page}{-1}%
+  \fi
+}
+\newcommand{\usst@ensureoddphysicalpage}{%
+  \clearpage
+  \ifodd\value{usst@abspage}
+    \begingroup
+      \hypersetup{pageanchor=false}%
+      \thispagestyle{empty}%
+      \null
+      \clearpage
+    \endgroup
+    \hypersetup{pageanchor=true}%
+  \fi
 }
 
 \newcommand{\usst@checkbox}{%
@@ -433,7 +456,7 @@
 }
 
 \newcommand{\usstmainmatter}{%
-  \clearpage
+  \usst@ensureoddphysicalpage
   \let\cleardoublepage\usst@cleardoublepage
   \@openrighttrue
   \pagenumbering{arabic}
