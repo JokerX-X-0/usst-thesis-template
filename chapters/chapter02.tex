@@ -1,0 +1,40 @@
+\chapter{正文元素示例}
+
+\section{图表示例}
+
+图和表均按章编号。图题置于图下方，表题置于表上方。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/fig1.png}
+  \caption{示例图}
+  \label{fig:demo}
+\end{figure}
+
+图~\ref{fig:demo} 使用本模板目录中的图片演示图题格式。正式论文中请替换为清晰图片，并保持图中文字、符号和单位与正文一致。
+
+\begin{table}[htbp]
+  \centering
+  \caption{模板中的三线表示例}
+  \label{tab:demo}
+  \begin{tabular}{ccc}
+    \toprule
+    指标 & 方法一 & 方法二 \\
+    \midrule
+    准确率 & 91.2\% & 94.5\% \\
+    时间/s & 12.4 & 9.8 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+表~\ref{tab:demo} 使用 booktabs 绘制三线表，符合科技论文常用表格形式。
+
+\section{公式示例}
+
+表达式按章编号，序号置于右侧。例如：
+\begin{equation}
+  E = mc^2
+  \label{eq:energy}
+\end{equation}
+
+式~\eqref{eq:energy} 仅用于演示公式编号。涉及变量、单位和推导时，应在正文中逐一说明。

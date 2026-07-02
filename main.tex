@@ -1,0 +1,51 @@
+\documentclass{ussthesis}
+
+% ===== Thesis metadata =====
+\usstSchoolCode{10252}
+\usstStudentID{XXXXXXXXX}
+\usstClassification{TP391（查询后调整）}
+\usstDegree{硕士}
+\usstDegreeEn{Master}
+\usstTitle{上海理工大学硕士学位论文 LaTeX 模板示例}
+\usstTitleEn{A LaTeX Template for Master's Thesis of University of Shanghai for Science and Technology}
+\usstAuthor{张三}
+\usstAuthorEn{Zhang San}
+\usstDepartment{学院名称}
+\usstDiscipline{专业名称}
+\usstResearchField{研究方向}
+\usstSupervisor{李四\quad 教授（根据实际调整）}
+\usstSupervisorEn{Professor Li Si}
+\usstDate{二〇二七年四月}
+\usstDateArabic{2027年4月}
+\usstDateEn{April 2027}
+\usstDegreeMode{全日制}
+
+% Abstract labels are printed before Chapter 1 in the table of contents by default.
+% If your school review requires omitting them, uncomment:
+% \usstAbstractNotInToc
+
+\begin{document}
+
+\makeoutercover
+\makeinnercover
+\makeauthorization
+\makedeclaration
+
+\input{chapters/abstract}
+\ussttableofcontents
+
+\usstmainmatter
+\include{chapters/chapter01}
+\include{chapters/chapter02}
+\include{chapters/conclusion}
+
+\usstbibliography{references}
+
+\usstappendix
+\include{chapters/appendix}
+
+\usstbackmatter
+\include{chapters/publications}
+\include{chapters/acknowledgements}
+
+\end{document}
