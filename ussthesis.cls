@@ -255,7 +255,9 @@
 \DeclareCaptionFont{usstcaption}{\songti\zihao{-4}\setlength{\baselineskip}{16bp}\selectfont}
 \DeclareCaptionLabelSeparator{usstspace}{\quad}
 \captionsetup{font=usstcaption,labelsep=usstspace}
-\captionsetup[figure]{position=bottom,aboveskip=6bp,belowskip=12bp}
+% Caption skips are combined with float spacing; keep the rendered gaps aligned with the thesis specification.
+\setlength{\intextsep}{0bp}
+\captionsetup[figure]{position=bottom,aboveskip=6bp,belowskip=0bp}
 \captionsetup[table]{position=top,aboveskip=12bp,belowskip=6bp}
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
