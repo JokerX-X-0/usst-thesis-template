@@ -49,7 +49,25 @@
 
 \let\cleardoublepage\clearpage
 \newcounter{usst@abspage}
-\AddToHook{shipout/after}{\stepcounter{usst@abspage}}
+\newif\ifusst@frontperpageblank
+\newif\ifusst@shippingfrontblank
+\AddToHook{shipout/after}{%
+  \stepcounter{usst@abspage}%
+  \ifusst@frontblankpages
+    \ifusst@frontperpageblank
+      \ifusst@shippingfrontblank
+      \else
+        \begingroup
+          \global\usst@shippingfrontblanktrue
+          \hypersetup{pageanchor=false}%
+          \shipout\vbox to \paperheight{\hbox to \paperwidth{\hfil}\vfil}%
+          \global\usst@shippingfrontblankfalse
+        \endgroup
+        \hypersetup{pageanchor=true}%
+      \fi
+    \fi
+  \fi
+}
 
 \newif\ifusst@frontblankpages
 \usst@frontblankpagesfalse
@@ -87,15 +105,11 @@
 }
 \newcommand{\usst@frontblankback}{%
   \clearpage
+  \global\usst@frontperpageblankfalse
+}
+\newcommand{\usst@beginfrontperpageblank}{%
   \ifusst@frontblankpages
-    \begingroup
-      \hypersetup{pageanchor=false}%
-      \thispagestyle{empty}%
-      \null
-      \clearpage
-    \endgroup
-    \hypersetup{pageanchor=true}%
-    \addtocounter{page}{-1}%
+    \global\usst@frontperpageblanktrue
   \fi
 }
 \newcommand{\usst@ensureoddphysicalpage}{%
@@ -418,6 +432,7 @@
   \chapter*{摘\quad 要}
   \markboth{摘要}{摘要}
   \thispagestyle{usstfront}
+  \usst@beginfrontperpageblank
   \songti\zihao{-4}\setlength{\baselineskip}{20bp}\selectfont
 }{\par\usst@frontblankback}
 
@@ -431,6 +446,7 @@
   \chapter*{ABSTRACT}
   \markboth{ABSTRACT}{ABSTRACT}
   \thispagestyle{usstfront}
+  \usst@beginfrontperpageblank
   \rmfamily\zihao{-4}\setlength{\baselineskip}{20bp}\selectfont
 }{\par\usst@frontblankback}
 
@@ -445,6 +461,7 @@
   \chapter*{\contentsname}
   \markboth{目录}{目录}
   \thispagestyle{usstfront}
+  \usst@beginfrontperpageblank
   \ifusst@abstractintoc
     {\songti\zihao{-4}\setlength{\baselineskip}{20bp}\selectfont
       \noindent 中文摘要\par
