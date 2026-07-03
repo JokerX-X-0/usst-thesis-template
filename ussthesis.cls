@@ -441,6 +441,7 @@
 
 \newenvironment{enabstract}{%
   \clearpage
+  \pagestyle{usstfront}
   \phantomsection
   \usst@bookmark{ABSTRACT}{usst.abstract.en}%
   \chapter*{ABSTRACT}
@@ -455,11 +456,13 @@
 
 \newcommand{\ussttableofcontents}{%
   \clearpage
+  \pagestyle{usstfront}%
   \phantomsection
   \usst@bookmark{目录}{usst.contents}%
   \markboth{目录}{目录}
   \chapter*{\contentsname}
   \markboth{目录}{目录}
+  \pagestyle{usstfront}%
   \thispagestyle{usstfront}
   \usst@beginfrontperpageblank
   \ifusst@abstractintoc
