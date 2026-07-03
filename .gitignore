@@ -27,9 +27,6 @@ _codex_*/
 # Local source/reference documents used while creating the template, not needed
 # for ordinary template use.
 /官网文件/
-/毕业论文摘要之前模板参考.docx
-/毕业论文摘要之前模板参考.pdf
-/模板目前存在的问题.txt
 *.doc
 *.docx
 
