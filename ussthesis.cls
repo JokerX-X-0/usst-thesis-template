@@ -298,6 +298,13 @@
   \end{tikzpicture}%
 }
 
+\newcommand{\usst@placecenter}[3]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=center,inner sep=0pt,outer sep=0pt]
+      at ([xshift=#1,yshift=-#2]current page.north west) {#3};
+  \end{tikzpicture}%
+}
+
 \newcommand{\makeoutercover}{%
   \begin{titlepage}
   \thispagestyle{empty}
@@ -350,8 +357,8 @@
   \begin{titlepage}
   \thispagestyle{empty}
   \null
-  \usst@place{2.5cm}{7.05cm}{%
-    \parbox{16cm}{\centering\rmfamily\fontsize{16bp}{32bp}\selectfont
+  \usst@placecenter{10.5cm}{8.0cm}{%
+    \parbox{16cm}{\centering\rmfamily\linespread{1}\fontsize{16bp}{32bp}\selectfont
       \MakeUppercase{\usst@titleen}}}
   \usst@place{0cm}{10.35cm}{%
     \parbox{\paperwidth}{\centering\rmfamily\fontsize{16bp}{24bp}\selectfont by}}
