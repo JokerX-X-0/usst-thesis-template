@@ -357,7 +357,7 @@
   \begin{titlepage}
   \thispagestyle{empty}
   \null
-  \usst@placecenter{10.5cm}{8.0cm}{%
+  \usst@placecenter{10.5cm}{7.45cm}{%
     \parbox{16cm}{\centering\rmfamily\linespread{1}\fontsize{16bp}{32bp}\selectfont
       \MakeUppercase{\usst@titleen}}}
   \usst@place{0cm}{10.35cm}{%
