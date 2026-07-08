@@ -4,7 +4,7 @@
 
 图和表均按章编号。图题置于图下方，表题置于表上方。
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{figures/fig1.png}
   \caption{示例图}
@@ -13,21 +13,21 @@
 
 图~\ref{fig:demo} 使用本模板目录中的图片演示图题格式。正式论文中请替换为清晰图片，并保持图中文字、符号和单位与正文一致。
 
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
   \caption{模板中的三线表示例}
   \label{tab:demo}
-  \begin{tabular}{ccc}
+  \begin{tabularx}{\textwidth}{@{}YYY@{}}
     \toprule
     指标 & 方法一 & 方法二 \\
     \midrule
     准确率 & 91.2\% & 94.5\% \\
     时间/s & 12.4 & 9.8 \\
     \bottomrule
-  \end{tabular}
+  \end{tabularx}
 \end{table}
 
-表~\ref{tab:demo} 使用 booktabs 绘制三线表，符合科技论文常用表格形式。
+表~\ref{tab:demo} 使用 booktabs 和 tabularx 绘制三线表，表格宽度与正文宽度一致。
 
 \section{公式示例}
 

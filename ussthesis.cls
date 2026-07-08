@@ -14,6 +14,7 @@
 \RequirePackage{xeCJK}
 \RequirePackage{fancyhdr}
 \RequirePackage{graphicx}
+\RequirePackage{float}
 \RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{tabularx}
@@ -44,6 +45,8 @@
 \setlength{\parindent}{2em}
 \setlength{\parskip}{0pt}
 \AtBeginDocument{\songti\zihao{-4}\setlength{\baselineskip}{20bp}\selectfont}
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
 
 \makeatletter
 
@@ -257,6 +260,8 @@
 \captionsetup{font=usstcaption,labelsep=usstspace}
 % Keep in-text floats separated from paragraphs; caption skips only tune object-caption gaps.
 \setlength{\intextsep}{10bp plus 2bp minus 2bp}
+\floatplacement{figure}{H}
+\floatplacement{table}{H}
 \captionsetup[figure]{position=bottom,aboveskip=6bp,belowskip=0bp}
 \captionsetup[table]{position=top,aboveskip=6bp,belowskip=0bp}
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
