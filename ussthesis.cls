@@ -44,6 +44,7 @@
 
 \setlength{\parindent}{2em}
 \setlength{\parskip}{0pt}
+\raggedbottom
 \AtBeginDocument{\songti\zihao{-4}\setlength{\baselineskip}{20bp}\selectfont}
 
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
