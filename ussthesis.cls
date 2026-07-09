@@ -15,6 +15,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{graphicx}
 \RequirePackage{float}
+\RequirePackage{placeins}
 \RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{tabularx}
@@ -129,8 +130,20 @@
   \fi
 }
 
-\newcommand{\usst@checkbox}{%
-  \tikz[baseline=-0.12em]{\draw[line width=0.4pt] (0,0) rectangle (10bp,10bp);}%
+\newcommand{\usst@authorizationlevel}{open}
+\newcommand{\usstAuthorizationSecret}{\gdef\usst@authorizationlevel{secret}}
+\newcommand{\usstAuthorizationInternal}{\gdef\usst@authorizationlevel{internal}}
+\newcommand{\usstAuthorizationOpen}{\gdef\usst@authorizationlevel{open}}
+\newcommand{\usst@checkbox}[1]{%
+  \tikz[baseline=-0.12em]{%
+    \draw[line width=0.4pt] (0,0) rectangle (10bp,10bp);%
+    \ifdefstring{\usst@authorizationlevel}{#1}
+      {\draw[line width=0.7pt,line cap=round,line join=round] (2bp,5bp) -- (4.2bp,2.2bp) -- (8.2bp,8bp);}
+      {}%
+  }%
+}
+\newcommand{\usst@secretyearbox}{%
+  \underline{\makebox[2.2em][c]{\usst@secretyears}}%
 }
 \newcommand{\usst@bookmark}[2]{\pdfbookmark[0]{#1}{#2}}
 \newcommand{\usst@coverinfo}[2]{\makebox[4\ccwd][l]{#1}：#2}
@@ -261,8 +274,13 @@
 \captionsetup{font=usstcaption,labelsep=usstspace}
 % Keep in-text floats separated from paragraphs; caption skips only tune object-caption gaps.
 \setlength{\intextsep}{10bp plus 2bp minus 2bp}
-\floatplacement{figure}{H}
-\floatplacement{table}{H}
+\floatplacement{figure}{!htb}
+\floatplacement{table}{!htb}
+\AtBeginDocument{%
+  \pretocmd{\section}{\FloatBarrier}{}{}%
+  \pretocmd{\subsection}{\FloatBarrier}{}{}%
+  \pretocmd{\subsubsection}{\FloatBarrier}{}{}%
+}
 \captionsetup[figure]{position=bottom,aboveskip=6bp,belowskip=0bp}
 \captionsetup[table]{position=top,aboveskip=6bp,belowskip=0bp}
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
@@ -398,9 +416,9 @@
     \parbox{4.5cm}{\songti\fontsize{14bp}{24bp}\selectfont 本学位论文属于}}
   \usst@place{8.65cm}{13.25cm}{%
     \parbox{5.0cm}{\songti\fontsize{14bp}{24bp}\selectfont
-      秘\hspace{1.0em}密\hspace{0.4em}\rule[-0.15em]{2.2em}{0.4pt}\hspace{0.4em}年\hspace{1.65em}\usst@checkbox\\
-      校\hspace{1.0em}内\hspace{0.4em}\rule[-0.15em]{2.2em}{0.4pt}\hspace{0.4em}年\hspace{1.65em}\usst@checkbox\\
-      公\hspace{1.0em}开\hspace{5.65em}\usst@checkbox}}
+      秘\hspace{1.0em}密\hspace{0.4em}\usst@secretyearbox\hspace{0.4em}年\hspace{1.65em}\usst@checkbox{secret}\\
+      校\hspace{1.0em}内\hspace{0.4em}\usst@secretyearbox\hspace{0.4em}年\hspace{1.65em}\usst@checkbox{internal}\\
+      公\hspace{1.0em}开\hspace{5.65em}\usst@checkbox{open}}}
   \usst@place{3.0cm}{19.2cm}{%
     \parbox{6.0cm}{\songti\fontsize{14bp}{24bp}\selectfont 学位论文作者签名：}}
   \usst@place{10.41cm}{19.2cm}{%
