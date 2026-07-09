@@ -130,10 +130,11 @@
   \fi
 }
 
-\newcommand{\usst@authorizationlevel}{open}
+\newcommand{\usst@authorizationlevel}{}
 \newcommand{\usstAuthorizationSecret}{\gdef\usst@authorizationlevel{secret}}
 \newcommand{\usstAuthorizationInternal}{\gdef\usst@authorizationlevel{internal}}
 \newcommand{\usstAuthorizationOpen}{\gdef\usst@authorizationlevel{open}}
+\newcommand{\usstAuthorizationNone}{\gdef\usst@authorizationlevel{}}
 \newcommand{\usst@checkbox}[1]{%
   \tikz[baseline=-0.12em]{%
     \draw[line width=0.4pt] (0,0) rectangle (10bp,10bp);%
@@ -142,8 +143,10 @@
       {}%
   }%
 }
-\newcommand{\usst@secretyearbox}{%
-  \underline{\makebox[2.2em][c]{\usst@secretyears}}%
+\newcommand{\usst@authorizationyearbox}[1]{%
+  \underline{\makebox[2.2em][c]{%
+    \ifdefstring{\usst@authorizationlevel}{#1}{\usst@secretyears}{}%
+  }}%
 }
 \newcommand{\usst@bookmark}[2]{\pdfbookmark[0]{#1}{#2}}
 \newcommand{\usst@coverinfo}[2]{\makebox[4\ccwd][l]{#1}：#2}
@@ -416,8 +419,8 @@
     \parbox{4.5cm}{\songti\fontsize{14bp}{24bp}\selectfont 本学位论文属于}}
   \usst@place{8.65cm}{13.25cm}{%
     \parbox{5.0cm}{\songti\fontsize{14bp}{24bp}\selectfont
-      秘\hspace{1.0em}密\hspace{0.4em}\usst@secretyearbox\hspace{0.4em}年\hspace{1.65em}\usst@checkbox{secret}\\
-      校\hspace{1.0em}内\hspace{0.4em}\usst@secretyearbox\hspace{0.4em}年\hspace{1.65em}\usst@checkbox{internal}\\
+      秘\hspace{1.0em}密\hspace{0.4em}\usst@authorizationyearbox{secret}\hspace{0.4em}年\hspace{1.65em}\usst@checkbox{secret}\\
+      校\hspace{1.0em}内\hspace{0.4em}\usst@authorizationyearbox{internal}\hspace{0.4em}年\hspace{1.65em}\usst@checkbox{internal}\\
       公\hspace{1.0em}开\hspace{5.65em}\usst@checkbox{open}}}
   \usst@place{3.0cm}{19.2cm}{%
     \parbox{6.0cm}{\songti\fontsize{14bp}{24bp}\selectfont 学位论文作者签名：}}
